@@ -8,9 +8,9 @@ name: Pull Request Environments
 on:
   pull_request:
     types: [opened, synchronize, reopened, closed]
-    paths:
-    - 'SampleWebApplication/**'
-    - '!docs/**'
+######     paths:
+######     - 'SampleWebApplication/**'
+######     - '!docs/**'
 
 env:
   AZURE_WEBAPP_PACKAGE_PATH: '.'
