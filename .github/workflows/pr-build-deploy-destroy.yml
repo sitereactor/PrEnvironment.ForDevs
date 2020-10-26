@@ -8,6 +8,9 @@ name: Pull Request Environments
 on:
   pull_request:
     types: [opened, synchronize, reopened, closed]
+    paths:
+    - 'SampleWebApplication/**'
+    - '!docs/**'
 
 env:
   AZURE_WEBAPP_PACKAGE_PATH: '.'
@@ -113,11 +116,11 @@ jobs:
           URL: "https://${{ needs.provision_job.outputs.webapp_url }}"
         with:
           script: |
-            const output = `#### Pull Request deployed to your Umbraco Cloud Space 🖌\`
+            const output = `#### Pull Request deployed to Azure App Service 🖌\`
             
-            <details><summary>Umbraco Cloud Space Details</summary>
+            <details><summary>Azure App Service Details</summary>
             
-            Your new Workspace is available here: ${process.env.URL}
+            Your new WebApp is available here: ${process.env.URL}
             
             </details>
             
@@ -172,5 +175,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'The Workspace for this Pull Request has been deleted, because the Pull Request was closed 🤖'
+              body: 'The Azure App Service WebApp for this Pull Request has been deleted, because the Pull Request was closed 🤖'
             })
